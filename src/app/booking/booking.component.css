@@ -1,0 +1,66 @@
+table{
+    border: 8px solid black;
+    width: 80%;
+    margin: 0px auto;
+}
+
+
+table>tr{
+    text-align: center;
+}
+
+td{
+    text-align: center;
+    background-color: whitesmoke;
+    padding: 2%;
+    border: 3px solid white;
+    border-radius: 15px;
+}
+
+
+#door{
+   background-color: white;
+   border-bottom: 15px solid blue;
+}
+
+#door-driver{
+    background-color: white;
+   border-top: 15px solid blue;
+}
+
+.door{
+    background-color: blue;
+    width: 20px;
+    height: 20px;
+    margin-left: 5%;
+}
+
+.empty{
+    background-color: whitesmoke;
+    width: 20px;
+    height: 20px;
+    margin-left: 5%;
+    margin-top: 3px;
+}
+
+.booked{
+    background-color: brown;
+    width: 20px;
+    height: 20px;
+    margin-left: 5%;
+    margin-top: 3px;
+}
+
+.guide{
+    display: flex;
+    flex-direction: row;
+}
+
+td{
+    background-color: lightgray;
+    color: black;
+}
+
+.selected{
+    background-color: green;
+}

@@ -1,0 +1,29 @@
+.home{
+    /* background-image: url(../../assets/bus.jpg); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* padding: 10% 10% 40% 10%; */
+}
+
+h1{
+    font-family: 'Signika Negative', sans-serif;
+}
+
+.form{
+    background-color: white;
+    padding: 2%;
+}
+
+#book{
+    border: 0px;
+    border-radius: 5px;
+    background-color: green;
+    width: 80%;
+    height: 100%;
+    color: white;
+}
+
+#search{
+    display: flex;
+    flex-direction: row;
+}
