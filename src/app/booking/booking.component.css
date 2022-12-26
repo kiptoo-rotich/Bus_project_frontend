@@ -64,3 +64,59 @@ td{
 .selected{
     background-color: green;
 }
+
+.cinema {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  
+  .seat {
+    appearance: none;
+    margin: 12px 8px;
+    border-radius: 2px;
+    background-color: rgb(243, 243, 243);
+    border: 1px rgb(194, 194, 194) solid;
+    border-top: 0px;
+    padding: 6px 10px;
+  }
+  
+  .seat:hover {
+    cursor: pointer;
+    transition-duration: 0.3s;
+    transform: scale(1.1);
+  }
+  
+  .buy {
+    appearance: none;
+    border: 1px solid rgb(224, 224, 224);
+    display: block;
+    margin-top: 30px;
+    padding: 12px 30px;
+    border-radius: 8px;
+    background: #3d6bb1;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .buy:disabled {
+    opacity: 0.7;
+  }
+  
+  .final-cost {
+    margin-top: 16px;
+  }
+  
+  p {
+    margin: 8px 0;
+  }
+
+
+  .bus_image{
+    border-radius: 5px;
+  }
+
+  .booking-buttons>button{
+    margin-right: 1%;
+  }
+  

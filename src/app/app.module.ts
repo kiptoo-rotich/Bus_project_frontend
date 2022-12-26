@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './/app-routing.module';
 import { BookingComponent } from './booking/booking.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { TuiRepeatTimesModule } from "@taiga-ui/cdk";
 
 
 @NgModule({
@@ -22,10 +23,11 @@ import { NotFoundComponent } from './not-found/not-found.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    TuiRepeatTimesModule
   ],
   
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

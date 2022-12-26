@@ -1,16 +1,22 @@
 <div class="container">
-  <input type="text" [(ngModel)]='val' />
-  {{val}}
-  <div id="bus_details" class="mt-5 row">
-    <div class="col-md-6">
+  <h3 class="text-center mt-5">Bus Details</h3>
+  <div id="bus_details" class="row">
+    <div class="col-md-3">
+      <img src="../../assets/bus.jpg" alt="" class="bus_image" height="100%" width="100%">
+    </div>
+    <div class="col-md-3 details">
       <p>Company: <i><b>{{bus.bus_company}} </b></i></p>
       <p>Plate Number: <i><b>{{bus.plate_number}} </b></i></p>
-      <p>Call: <b>0{{bus.contact}}</b></p>
+      <p>Contact Number:- <b>+254{{bus.contact}}</b></p>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-3">
       <p>Price per seat:- Kshs. <i><b>{{fare}}.</b></i></p>
-      <p>Total capacity:- <i><b>{{capacity}} seats.</b></i></p>
+      <p>Date:- <i><b>{{bus.date}}</b></i></p>
+      <p>Departure Time:- <i><b>{{bus.time}}</b></i></p>
+    </div>
+    <div class="col-md-3">
+      <p>All good?<br><i>Proceed to seat booking.</i></p>
     </div>
   </div>
   <div class="submit-form">
@@ -68,37 +74,53 @@
           </tbody>
         </table>
       </div>
-      <button (click)="saveBooking()" class="btn btn-primary btn-lg">Proceed to pay</button>
-
+      <div class="text-center booking-buttons">
+        <button class="btn btn-md btn-outline-danger">Cancel</button>
+        <button (click)="saveBooking()" class="btn btn-outline-success btn-lg">Proceed to pay</button>
+      </div>
     </div>
 
     <div *ngIf="submitted">
 
       <div *ngIf="!pay">
-        <p>Total amount to pay: Kshs. <b>{{totalAmount}}</b>.</p>
-        <p>Number of seats: <b>{{numberOfSeats}}</b> seats.</p>
-        <p>Select mode of payment:</p>
-        <div class="form-check">
-          <input mdbRadio class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
-          <label class="form-check-label" for="flexRadioDefault1"> Cash </label>
-        </div>
-        <!-- Default checked radio -->
-        <div class="form-check">
-          <input mdbRadio class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
-            [checked]="true" />
-          <label class="form-check-label" for="flexRadioDefault2"> M-Pesa </label>
-        </div>
-        <button type="submit" class="btn btn-md" (click)="payment()">Proceed</button>
-      </div>
-
-      <div *ngIf="pay">
         <h5>Total amount in Kshs. {{totalAmount}} for {{numberOfSeats}} seats.</h5>
         <ol>
           <li *ngFor="let seat of seats">Seat number: <b>{{seat}}</b></li>
         </ol>
+        <button type="submit" class="btn btn-md" (click)="payment()">Make payment</button>
+      </div>
+
+      <div *ngIf="pay">
+        <button class="btn btn-outline-secondary btn-lg">Cash</button><br>
+        <button class="btn btn-outline-secondary btn-lg">M-Pesa</button>
       </div>
 
     </div>
   </div>
 
 </div>
+
+<!-- <section *ngIf="cost$ | async as cost; else choose" class="final-cost">
+  Final cost is Kshs. {{ cost }} -->
+<!-- </section> -->
+<!-- 
+<ng-template #choose>
+  <h3>Choose your seats</h3>
+
+  <section class="cinema">
+    <button 
+    *tuiRepeatTimes="let index of 63" 
+    class="seat" 
+    (click)="selectSeat$.next(index + 1)">
+      {{ index + 1 }}
+    </button>
+  </section>
+
+  <ng-container *ngIf="selectedMessage$ | async as number">
+    Selected: {{ number }}
+
+    <button class="buy" [disabled]="message === noneMessage" (click)="selectSeat$.complete()">
+      Buy
+    </button>
+  </ng-container>
+</ng-template> -->

@@ -2,20 +2,23 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BusServiceService } from '../bus-service.service';
 import { HttpClient } from "@angular/common/http";
-import { concat, Observable } from "rxjs"
+import { concat, Observable, Subject } from "rxjs"
 import { environment } from 'src/environments/environment';
 import axios from 'axios';
+import { map, reduce, scan, share, startWith } from "rxjs/operators";
+
 
 @Component({
   selector: 'app-booking',
   templateUrl: './booking.component.html',
   styleUrls: ['./booking.component.css']
 })
+
 export class BookingComponent implements OnInit {
 
   val: string = '';
   id!: number;
-  bus:any = [];
+  bus: any = [];
   busid = this.route.snapshot.params['id'];
   public isPressed = false;
   fare = ""
@@ -28,6 +31,8 @@ export class BookingComponent implements OnInit {
 
   seats: any = [];
 
+  modeOfPayment: any;
+
   constructor(private route: ActivatedRoute, private busService: BusServiceService, private http: HttpClient) {
   }
 
@@ -38,10 +43,10 @@ export class BookingComponent implements OnInit {
     let value = parseInt(event.target.innerText);
     this.bookedSeats()
     if (value) {
-      if (this.booked_seats.indexOf(value) === -1) {
-        this.seats.push(value)
+      if (this.booked_seats.includes(value)) {
+        alert("Seat No. " + value + " is already booked.")
       } else {
-        alert("Seat No. " + value + " booked.")
+        this.seats.push(value)
       }
     } else {
       alert(this.message)
@@ -57,9 +62,10 @@ export class BookingComponent implements OnInit {
     this.busService.getSeatData().subscribe((data) => {
       for (let i = 0; i < data.length; i++) {
         let list = parseInt(data[i].seat);
-        this.booked_seats.push(list)
+        for (let item in data) {
+          this.booked_seats.push(item)
+        }
       }
-
     })
   }
 
@@ -78,12 +84,13 @@ export class BookingComponent implements OnInit {
           this.submitted = true;
         }
       )
+
   }
 
   // If the user has selected atleast one seat, make reservation
   saveBooking() {
     this.numberOfSeats = this.seats.length
-    if (this.numberOfSeats > 0) {
+    if (this.numberOfSeats > 0 && !this.booked_seats.some((item: any) => this.seats.includes(item))) {
       this.seat_Reservation()
     } else {
       alert("Select seat first!")
@@ -97,6 +104,7 @@ export class BookingComponent implements OnInit {
         this.bus = bus;
         this.fare = bus.fare
         this.capacity = bus.seats
+        return bus;
       } else {
         console.log("No bus")
       }
